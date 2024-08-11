@@ -164,7 +164,7 @@ const Glider = ({ width, height }) => {
     const canvas = canvasRef.current;
     if (!gl) return;
 
-    gl.clearColor(0.043, 0, 0.2, 1.0);
+    gl.clearColor(0.0, 0.062, (38/255), 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     const grid = gridRef.current;
@@ -176,7 +176,7 @@ const Glider = ({ width, height }) => {
             y * (canvas.height / height),
             canvas.width / width - 2,
             canvas.height / height - 2,
-            [0.11, 0.447, 0.576, 0.9],
+            [0.49, 0.522, 0.592, 0.9],
           );
         }
       }
@@ -229,7 +229,7 @@ const Glider = ({ width, height }) => {
       ref={canvasRef}
       width={dimensions.width}
       height={dimensions.height}
-      style={{ width: "100%", height: "40vh" }}
+      style={{ width: "100%", height: "40vh", margin: 0, padding: 0 }}
     />
   );
 };

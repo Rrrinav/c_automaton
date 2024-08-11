@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app {
+  background: rgba(0, 40, 85, 1);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
