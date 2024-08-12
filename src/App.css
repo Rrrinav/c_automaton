@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.html,
+.body {
+  background: rgba(0, 16, 38, 1);
+}
+
 .app {
   background: rgba(0, 40, 85, 1);
 }
@@ -10,4 +16,14 @@
 .header {
   display: flex;
   flex-direction: column;
+}
+
+.loader {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  pointer-events: none; /* Optional: Disable interactions with the loader */
 }
