@@ -11,7 +11,7 @@
     rgba(0, 18, 51, 1) 62%,
     rgba(0, 40, 85, 1) 100%
   );
-  color: #fafafa;
+  color: #f8f7f4;
   /* border-bottom: 1px solid #ccc; */
 }
 
@@ -37,11 +37,11 @@
 .list_elem:hover {
   background-color: #002766; /* Slightly lighter background */
   transform: translateY(-3px); /* Slight upward movement */
-  box-shadow: 0 4px 4px rgba(12, 12, 12, 1); /* Soft shadow */
+  box-shadow: 0 4px 10px rgba(4, 102, 200, 1); /* Soft shadow */
   cursor: pointer;
 }
 
 #logo {
-  color: #fafafa;
+  color: #f8f7f4;
   font-size: 1.25rem;
 }
