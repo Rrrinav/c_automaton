@@ -39,7 +39,7 @@ const CellularAutomataLoader = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-          ctx.fillStyle = grid[r][c] === 1 ? "#fff" : "#001026";
+          ctx.fillStyle = grid[r][c] === 1 ? "#7d8597" : "#001026";
           ctx.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         }
       }
@@ -82,7 +82,7 @@ const CellularAutomataLoader = () => {
       drawGrid();
     };
 
-    intervalRef.current = setInterval(animate, 100);
+    intervalRef.current = setInterval(animate, 200);
 
     return () => {
       clearInterval(intervalRef.current);

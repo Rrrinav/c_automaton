@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import Glider from "./webGl/Glider";
 import Navbar from "./jsx_comp/Navbar/Navbar";
 import Introduction from "./jsx_comp/Main_Body/Introduction/Introduction";
@@ -15,7 +13,7 @@ function App() {
     const loaderTimer = setTimeout(() => {
       setFadeOutLoader(true);
       setLoading(false);
-    }, 2000);
+    }, 2500);
 
     return () => {
       clearTimeout(loaderTimer); // Cleanup timer on component unmount

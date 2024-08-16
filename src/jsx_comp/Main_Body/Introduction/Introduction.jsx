@@ -10,7 +10,7 @@ const Introduction = () => {
     gsap.fromTo(
       tagRef.current,
       { opacity: 0, y: 50 },
-      { duration: 1.5, opacity: 1, y: 0, ease: "power2.out" },
+      { duration: 2.0, opacity: 1, y: 0, ease: "power2.out" },
     );
   }, []);
 
