@@ -16,9 +16,10 @@
 }
 
 .list {
+  font-size: 1.3rem;
   list-style: none;
   display: flex;
-  gap: 15px;
+  gap: 3rem;
 }
 
 .list:hover {
@@ -43,5 +44,5 @@
 
 #logo {
   color: #f8f7f4;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }

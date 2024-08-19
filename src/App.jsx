@@ -3,6 +3,7 @@ import Glider from "./webGl/Glider";
 import Navbar from "./jsx_comp/Navbar/Navbar";
 import Introduction from "./jsx_comp/Main_Body/Introduction/Introduction";
 import Loader from "./jsx_comp/Loader/Loader";
+import Linea from "./webGl/Linea";
 import "./App.css";
 
 function App() {
@@ -22,21 +23,24 @@ function App() {
 
   return (
     <>
-      {loading ? (
-        <div className={`loader ${fadeOutLoader ? "hidden" : ""}`}>
-          <Loader />
+      {/* {loading ? ( */}
+      {/*   <div className={`loader ${fadeOutLoader ? "hidden" : ""}`}> */}
+      {/*     <Loader /> */}
+      {/*   </div> */}
+      {/* ) : ( */}
+      <div className="app">
+        <div className="header">
+          <Navbar />
+          <Glider width={20} height={6} />
         </div>
-      ) : (
-        <div className="app">
-          <div className="header">
-            <Navbar />
-            <Glider width={20} height={6} />
-          </div>
-          <div className="main_body">
-            <Introduction />
-          </div>
+        <div className="main_body">
+          <Introduction />
         </div>
-      )}
+        <div>
+          <Linea />
+        </div>
+      </div>
+      {/* )} */}
     </>
   );
 }
