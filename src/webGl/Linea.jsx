@@ -1,18 +1,22 @@
 import React, { useRef, useEffect } from "react";
 import PicoGL from "picogl";
 
-const generateCheckerboardTexture = (size, colors) => {
+// Function to generate a checkerboard texture
+const generateCheckerboardTexture = (size, colors, checkSize) => {
   const data = new Uint8Array(size * size * 4); // RGBA format
 
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
-      const isWhite = ((x >> 3) & 1) === ((y >> 3) & 1);
-      const color = isWhite ? colors[0] : colors[1]; // Choose between two colors
       const index = (y * size + x) * 4;
-      data[index] = color[0]; // R
-      data[index + 1] = color[1]; // G
-      data[index + 2] = color[2]; // B
-      data[index + 3] = 255; // A (full opacity)
+      const color =
+        (Math.floor(x / checkSize) + Math.floor(y / checkSize)) % 2 === 0
+          ? colors[0]
+          : colors[1];
+
+      data[index + 0] = color[0]; // Red
+      data[index + 1] = color[1]; // Green
+      data[index + 2] = color[2]; // Blue
+      data[index + 3] = 255; // Alpha
     }
   }
 
@@ -28,63 +32,59 @@ const Linea = () => {
     if (!canvas) return;
 
     // Initialize PicoGL
-    const app = PicoGL.createApp(canvas)
-      .clearColor(0.0, 0.0, 0.0, 1.0)
-      .depthTest();
+    const app = PicoGL.createApp(canvas).clearColor(0.0, 0.0, 0.0, 1.0);
 
     // Create shaders
     const vertexShaderSource = `#version 300 es
       in vec4 position;
-      in vec3 color;
       in vec2 texCoord;
-      out vec3 vColor;
+      in vec4 color;
       out vec2 vTexCoord;
+      out vec4 vColor;
       void main() {
-        vColor = color;
         vTexCoord = texCoord;
         gl_Position = position;
+        vColor = color;
       }`;
 
     const fragmentShaderSource = `#version 300 es
       precision highp float;
-      in vec3 vColor;
       in vec2 vTexCoord;
+      in vec4 vColor;
       out vec4 outColor;
       uniform sampler2D uTexture;
       void main() {
-        vec4 textureColor = texture(uTexture, vTexCoord);
-        outColor = textureColor * vec4(vColor, 1.0); // Combine texture color with vertex color
+        outColor = texture(uTexture, vTexCoord) * vColor;
       }`;
 
     const program = app.createProgram(vertexShaderSource, fragmentShaderSource);
 
-    // Create buffers for positions, colors, and texture coordinates
+    // Create buffers for positions and texture coordinates
     const positions = app.createVertexBuffer(
       PicoGL.FLOAT,
       2,
       new Float32Array([
-        -0.5,
-        -0.5, // Vertex 1
-        0.5,
-        -0.5, // Vertex 2
-        0.0,
-        0.5, // Vertex 3
+        -1.0,
+        -1.0, // Bottom left
+        -1.0,
+        1.0, // Top left
+        1.0,
+        1.0, // Top right
+        1.0,
+        1.0, // Top right
+        1.0,
+        -1.0, // Bottom right
+        -1.0,
+        -1.0, // Bottom left
       ]),
     );
 
     const colors = app.createVertexBuffer(
       PicoGL.FLOAT,
-      3,
+      4,
       new Float32Array([
-        1.0,
-        0.0,
-        0.0, // Red
-        0.0,
-        1.0,
-        0.0, // Green
-        0.0,
-        0.0,
-        1.0, // Blue
+        1.0, 0, 0, 1.0, 0, 1.0, 0, 1.0, 0, 0, 1.0, 1.0, 0, 0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 0.0, 0, 1.0,
       ]),
     );
 
@@ -93,31 +93,44 @@ const Linea = () => {
       2,
       new Float32Array([
         0.0,
-        0.0, // Vertex 1 TexCoord
+        0.0, // Bottom left
+        0.0,
+        1.0, // Top left
         1.0,
-        0.0, // Vertex 2 TexCoord
-        0.5,
-        1.0, // Vertex 3 TexCoord
+        1.0, // Top right
+        1.0,
+        1.0, // Top right
+        1.0,
+        0.0, // Bottom right
+        0.0,
+        0.0, // Bottom left
       ]),
     );
 
     const vertexArray = app
       .createVertexArray()
-      .vertexAttributeBuffer(0, positions)
-      .vertexAttributeBuffer(1, colors)
-      .vertexAttributeBuffer(2, texCoords);
+      .vertexAttributeBuffer(0, positions, { size: 2 })
+      .vertexAttributeBuffer(1, texCoords)
+      .vertexAttributeBuffer(2, colors);
 
-    const textureData = generateCheckerboardTexture(128, [
-      [255, 255, 255],
-      [0, 0, 0],
-    ]);
+    // Create and load texture
+    const textureData = generateCheckerboardTexture(
+      128,
+      [
+        [255, 255, 255], // White
+        [0, 0, 255], // Blue
+      ],
+      8,
+    );
 
     const texture = app.createTexture2D(textureData, 128, 128, {
-      format: PicoGL.RGBA,
       internalFormat: PicoGL.RGBA8,
-      mipmaps: true,
+      mipmaps: false,
+      minFilter: PicoGL.NEAREST,
+      magFilter: PicoGL.NEAREST,
     });
 
+    // Render loop
     const renderLoop = () => {
       app.clear();
       app
@@ -130,9 +143,8 @@ const Linea = () => {
 
     renderLoop();
 
-    return () => {
-      texture.delete();
-    };
+    // Cleanup function
+    return () => {};
   }, []);
 
   return <canvas ref={canvasRef} width={600} height={600} />;
