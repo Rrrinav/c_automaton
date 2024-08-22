@@ -3,14 +3,14 @@ import PicoGL from "picogl";
 
 const SmoothLife = () => {
   const canvasRef = useRef(null);
-  const textureSize = 512.0; // Size of the texture
-
+  const texturewidth = 512.0; // Size of the texture
+  const textureheight = 256.0; // Size of the texture
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     // Initialize PicoGL
-    const app = PicoGL.createApp(canvas).clearColor(0.0, 1.0, 0.0, 1.0);
+    const app = PicoGL.createApp(canvas).clearColor(0.0, 0.0, 0.0, 1.0);
 
     // Vertex Shader
     const vertexShaderSource = `#version 300 es
@@ -32,29 +32,46 @@ const SmoothLife = () => {
       
       out vec4 finalColor;
       
-      float ra = 11.0;
-      float dt = 0.08;
+      float ra = 10.0;
+      float dt = 0.91;
       
-      vec2 modd(vec2 x, float y)
-      {
-        float xx = x.x - y * floor(x.x/y);
-        float yy = x.y - y * floor(x.y/y);
-        return (vec2(xx, yy));
-      }
-
-     
+      float b1 = 0.258;
+      float b2 = 0.327;
+      float d1 = 0.3649;
+      float d2 = 0.548;
+      float alpha_n = 0.028;
+      float alpha_m = 0.147;
       float grid(vec2 uv)
-      {
-          vec2 UV = modd(uv, 1.0);
-          vec4 t = texture(uCurrentState, UV);
+      { 
+          uv = fract(uv); 
+          vec4 t = texture(uCurrentState, uv);
           return max(max(t.r, t.g), t.b);
       }
       
+      float sigma(float x, float a, float alpha)
+      {
+        return 1.0/(1.0 + exp(-(x - a)*4.0/alpha));
+      }
+     
+      float sigma_n(float x, float a, float b)
+      {
+          return sigma(x, a, alpha_n)*(1.0 - sigma(x, b, alpha_n));
+      }
+
+      float sigma_m(float x, float y, float m)
+      {
+          return x*(1.0 - sigma(m, 0.5, alpha_m)) + y*sigma(m, 0.5, alpha_m);
+      }
+      
+      float s(float n, float m)
+      {
+          return sigma_n(n, sigma_m(b1, d1, m), sigma_m(b2, d2, m));
+      }
       void main()
       {
           vec2 uv = vTexCoord;
           vec2 pixelCoord = uv * uTextureSize;
-          float ri = ra/3.0;
+          float ri = 3.0;
           float m = 0.0;
           float n = 0.0;
           float M = 3.14159265359 * ri * ri;
@@ -75,22 +92,17 @@ const SmoothLife = () => {
           n /= N;
       
           // SmoothLife rules
-          float b1 = 0.257;
-          float b2 = 0.336;
-          float d1 = 0.365;
-          float d2 = 0.549;
-          float alpha_n = 0.028;
-          float alpha_m = 0.147;
-      
-          float sigma1 = 1.0/(1.0 + exp(-(n - (m*(1.0 - b1) + b1*d1))*4.0/alpha_n));
-          float sigma2 = 1.0/(1.0 + exp(-(n - (m*(1.0 - b2) + b2*d2))*4.0/alpha_n));
-          float q = sigma1 * (1.0 - sigma2);
-      
-          float diff = 2.0*q - 1.0;
-          float v = clamp(grid(uv) + dt*diff, 0.0, 1.0);
-      
-          finalColor = vec4(v, v, v, 1.0) * vec4(0.0, 1.0, 1.0, 1.0);
+          float q = s(n, m);
 
+          float diff = 2.0 * q - 1.0;
+          float v = clamp(grid(uv) + dt*diff, 0.0, 1.0);
+          vec4 color;
+          if (v < 0.0) {
+          color = vec4(0.0, 1.0, 0.0, 1.0);
+          } else {
+          color =  vec4(v, v, v, 1.0); 
+          }
+          finalColor = color * vec4(0.0, 1.0, 1.0, 1.0);
       }`;
     const program = app.createProgram(vertexShaderSource, fragmentShaderSource);
 
@@ -137,25 +149,32 @@ const SmoothLife = () => {
       .vertexAttributeBuffer(0, positions)
       .vertexAttributeBuffer(1, texCoords);
 
-    const initStateData = new Uint8Array(textureSize * textureSize * 4);
-    for (let i = 0; i < initStateData.length; i += 4) {
-      const state = Math.random() > 0.09 ? 255 : 0;
-
-      initStateData[i] = state; // R
-      initStateData[i + 1] = state; // G
-      initStateData[i + 2] = state; // B
-      initStateData[i + 3] = 255; // A
+    const initStateData = new Uint8Array(texturewidth * textureheight * 4);
+    for (let y = 0; y < textureheight; y++) {
+      for (let x = 0; x < texturewidth; x++) {
+        const i = (y * texturewidth + x) * 4;
+        const state = Math.random() * 255;
+        // const i = (y * texturewidth + x) * 4;
+        // const dx = x - texturewidth / 2;
+        // const dy = y - textureheight / 2;
+        // const d = Math.sqrt(dx * dx + dy * dy);
+        // const state = d < 20 ? 255 : Math.random() < 0.5 ? 255 : 0;
+        initStateData[i] = state;
+        initStateData[i + 1] = state;
+        initStateData[i + 2] = state;
+        initStateData[i + 3] = 255;
+      }
     }
 
     const texture1 = app.createTexture2D(
       initStateData,
-      textureSize,
-      textureSize,
+      texturewidth,
+      textureheight,
       {
         internalFormat: PicoGL.RGBA8,
         type: PicoGL.UNSIGNED_BYTE,
-        minFilter: PicoGL.NEAREST,
-        magFilter: PicoGL.NEAREST,
+        minFilter: PicoGL.LINEAR,
+        magFilter: PicoGL.LINEAR,
         wrapS: PicoGL.REPEAT,
         wrapT: PicoGL.REPEAT,
       },
@@ -163,13 +182,13 @@ const SmoothLife = () => {
 
     const texture2 = app.createTexture2D(
       initStateData,
-      textureSize,
-      textureSize,
+      texturewidth,
+      textureheight,
       {
         internalFormat: PicoGL.RGBA8,
         type: PicoGL.UNSIGNED_BYTE,
-        minFilter: PicoGL.NEAREST,
-        magFilter: PicoGL.NEAREST,
+        minFilter: PicoGL.LINEAR,
+        magFilter: PicoGL.LINEAR,
         wrapS: PicoGL.REPEAT,
         wrapT: PicoGL.REPEAT,
       },
@@ -184,25 +203,26 @@ const SmoothLife = () => {
 
     const renderLoop = () => {
       app.drawFramebuffer(state === 0 ? framebuffer2 : framebuffer1);
+      app.viewport(0, 0, texturewidth, textureheight);
       app.clear();
       app
         .createDrawCall(program, vertexArray)
         .texture("uCurrentState", textures[state])
-        .uniform("uTextureSize", [textureSize, textureSize])
+        .uniform("uTextureSize", [texturewidth, textureheight])
         .draw();
 
       // Swap textures
       state = 1 - state;
 
       app.defaultDrawFramebuffer();
+      app.viewport(0, 0, canvas.width, canvas.height);
       app.clear();
       app
         .createDrawCall(program, vertexArray)
         .texture("uCurrentState", textures[state])
-        .uniform("uTextureSize", [textureSize, textureSize])
+        .uniform("uTextureSize", [texturewidth, textureheight])
         .draw();
-
-      setTimeout(() => requestAnimationFrame(renderLoop), 1000 / 10);
+      setTimeout(() => requestAnimationFrame(renderLoop), 1000 / 12);
     };
 
     renderLoop();
@@ -210,7 +230,7 @@ const SmoothLife = () => {
     return () => {};
   }, []);
 
-  return <canvas ref={canvasRef} width={600} height={600} />;
+  return <canvas ref={canvasRef} width={800} height={360} />;
 };
 
 export default SmoothLife;
