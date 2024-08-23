@@ -1,6 +1,11 @@
+.main-body {
+display: flex;
+  flex-direction: column;
+}
+
 .introduction {
   margin: 0;
-  padding: 1.5em;
+  padding: 2.5em 4em;
   background: rgb(0, 14, 38);
   background: linear-gradient(
     180deg,
@@ -11,7 +16,7 @@
 }
 
 .heading {
-  font-size: 3em;
+  font-size: 3.2em;
   font-weight: 600;
   color: #fafafa;
   margin-bottom: 0;
@@ -20,7 +25,7 @@
 }
 
 .intro {
-  margin-top: 1.2em;
+  margin-top: 1.5em;
   padding-left: 5rem;
   padding-right: 5.5rem;
 }
@@ -30,4 +35,20 @@
   font-size: 1.2em;
   font-weight: 400;
   line-height: 1.5;
+}
+#heading {
+  width: 30%;
+  font-size: 5.5em;
+  font-weight: bold;
+  margin-bottom: 0px;
+  line-height: 1.1;
+  color: #fafafa;
+}
+#tagline {
+  width: 70%;
+  font-size: 2.5em;
+  font-weight: 300;
+  margin-top: 15px;
+  margin-bottom: 1em;
+  color: #979dac;
 }

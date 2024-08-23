@@ -8,7 +8,7 @@
   background: linear-gradient(
     0deg,
     rgba(0, 14, 38, 1) 22%,
-    rgba(0, 18, 51, 1) 62%,
+    rgba(0, 18, 51, 1) 42%,
     rgba(0, 40, 85, 1) 100%
   );
   color: #f8f7f4;
@@ -16,7 +16,7 @@
 }
 
 .list {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   list-style: none;
   display: flex;
   gap: 3rem;
@@ -36,13 +36,28 @@
 }
 
 .list_elem:hover {
-  background-color: #002766; /* Slightly lighter background */
-  transform: translateY(-3px); /* Slight upward movement */
-  box-shadow: 0 4px 10px rgba(4, 102, 200, 1); /* Soft shadow */
+  background-color: #002855;
+  box-shadow: 0px 0px 6px rgba(4, 102, 200, 1);
   cursor: pointer;
+  color: #f8f7f4;
+}
+
+.list_elem a.active {
+  color: #7d8597;
+  text-decoration: none;
+}
+
+.list_elem a {
+  color: #f8f7f4;
+  text-decoration: none;
 }
 
 #logo {
   color: #f8f7f4;
-  font-size: 1.5rem;
+  font-size: 2rem;
+}
+
+#logo a {
+  color: #f8f7f4;
+  text-decoration: none;
 }

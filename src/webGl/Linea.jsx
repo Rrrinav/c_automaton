@@ -10,7 +10,7 @@ const SmoothLife = () => {
     if (!canvas) return;
 
     // Initialize PicoGL
-    const app = PicoGL.createApp(canvas).clearColor(0.0, 0.0, 0.0, 1.0);
+    const app = PicoGL.createApp(canvas).clearColor(0.0, 1.0, 0.0, 1.0);
 
     // Vertex Shader
     const vertexShaderSource = `#version 300 es
@@ -32,8 +32,8 @@ const SmoothLife = () => {
       
       out vec4 finalColor;
       
-      float ra = 10.0;
-      float dt = 0.91;
+      float ra = 12.0;
+      float dt = 0.96;
       
       float b1 = 0.258;
       float b2 = 0.327;
@@ -45,7 +45,7 @@ const SmoothLife = () => {
       { 
           uv = fract(uv); 
           vec4 t = texture(uCurrentState, uv);
-          return max(max(t.r, t.g), t.b);
+          return max(t.g, t.r);
       }
       
       float sigma(float x, float a, float alpha)
@@ -97,12 +97,12 @@ const SmoothLife = () => {
           float diff = 2.0 * q - 1.0;
           float v = clamp(grid(uv) + dt*diff, 0.0, 1.0);
           vec4 color;
-          if (v < 0.0) {
-          color = vec4(0.0, 1.0, 0.0, 1.0);
+          if (v <= 0.0) {
+          color = vec4(0.0, 0.0, 0.15, 1.0);
           } else {
-          color =  vec4(v, v, v, 1.0); 
+          color =  vec4(v, v, v, 1.0) * vec4(0.9 , 1. , 1. ,0.7);
           }
-          finalColor = color * vec4(0.0, 1.0, 1.0, 1.0);
+          finalColor = color; 
       }`;
     const program = app.createProgram(vertexShaderSource, fragmentShaderSource);
 
@@ -153,12 +153,7 @@ const SmoothLife = () => {
     for (let y = 0; y < textureheight; y++) {
       for (let x = 0; x < texturewidth; x++) {
         const i = (y * texturewidth + x) * 4;
-        const state = Math.random() * 255;
-        // const i = (y * texturewidth + x) * 4;
-        // const dx = x - texturewidth / 2;
-        // const dy = y - textureheight / 2;
-        // const d = Math.sqrt(dx * dx + dy * dy);
-        // const state = d < 20 ? 255 : Math.random() < 0.5 ? 255 : 0;
+        const state = Math.random() * 255; 
         initStateData[i] = state;
         initStateData[i + 1] = state;
         initStateData[i + 2] = state;
@@ -230,7 +225,7 @@ const SmoothLife = () => {
     return () => {};
   }, []);
 
-  return <canvas ref={canvasRef} width={800} height={360} />;
+  return <canvas ref={canvasRef} width={800} height={460} />;
 };
 
 export default SmoothLife;

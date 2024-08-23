@@ -1,0 +1,164 @@
+.footer {
+  border-top: 0.5px solid #979dac;
+  height: 30vh;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 40, 85, 1) 20%,
+    rgba(51, 65, 92, 1) 100%
+  );
+  color: #979dac;
+  padding: 1em 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 15px;
+}
+
+.footer-about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.logo-text {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #fafafa;
+}
+
+#intro-text {
+  font-size: 1.3em;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #fafafa;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #61dafb;
+}
+
+.footer-links {
+  margin-bottom: 1.5rem;
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+  color: #fafafa;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links ul li a {
+  color: #979dac;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #61dafb;
+}
+
+.footer-newsletter {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.footer-newsletter h4 {
+  margin-bottom: 10px;
+  color: #fafafa;
+}
+
+.footer-newsletter form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-newsletter input {
+  padding: 10px;
+  border: none;
+  border-radius: 10px 0 0 10px;
+  outline: none;
+  flex: 1;
+  max-width: 300px;
+}
+
+.footer-newsletter button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  background-color: #61dafb;
+  color: #1c1c1e;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.footer-newsletter button:hover {
+  background-color: #39a0d7;
+}
+
+.footer-contact {
+  text-align: center;
+}
+
+.footer-contact h4 {
+  margin-bottom: 10px;
+  color: #fafafa;
+}
+
+.footer-contact p {
+  margin: 8px 0;
+  color: #fafafa;
+}
+
+.footer-contact i {
+  color: #61dafb;
+  margin-right: 10px;
+}
+
+.footer-bottom {
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 14px;
+  color: #fafafa;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+}
