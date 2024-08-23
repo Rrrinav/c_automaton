@@ -19,7 +19,7 @@ const Home = () => {
         <div className="introduction">
           <div className="tag" ref={tagRef}>
             <div id="heading">Cellular Automaton</div>
-            <div id="tagline">Complicate Systems from simple rules</div>
+            <div id="tagline">Complicated Systems from simple rules</div>
           </div>
         </div>
       </div>

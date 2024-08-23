@@ -28,28 +28,20 @@
 
 .list_elem {
   padding: 5px 10px;
-  border-radius: 5px;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.list_elem:hover {
-  background-color: #002855;
-  box-shadow: 0px 0px 6px rgba(4, 102, 200, 1);
-  cursor: pointer;
-  color: #f8f7f4;
-}
-
-.list_elem a.active {
-  color: #7d8597;
-  text-decoration: none;
 }
 
 .list_elem a {
   color: #f8f7f4;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.list_elem a.active {
+  color: #7d8597;
+}
+
+.list_elem:hover a {
+  color: #0466c8;
 }
 
 #logo {
