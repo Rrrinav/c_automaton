@@ -3,7 +3,9 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import Glider from "../../webGl/Glider";
 import cell from "../../assets/cells2.jpg";
+import Card from "./Card/Card";
 import "./Home.css";
+import { cardsData } from "../../Data/CardData";
 
 const Home = () => {
   const tagRef = useRef(null);
@@ -18,7 +20,7 @@ const Home = () => {
     gsap.fromTo(
       tagRef.current,
       { opacity: 0, y: 70 },
-      { duration: 1.5, opacity: 1, y: 0, ease: "power3.out" },
+      { duration: 2, opacity: 1, y: 0, ease: "power3.out" },
     );
   }, []);
 
@@ -26,7 +28,7 @@ const Home = () => {
     gsap.fromTo(
       imageRef.current,
       { opacity: 0, x: 70 },
-      { duration: 1.5, opacity: 1, x: 0, ease: "power3.out" },
+      { duration: 2, opacity: 1, x: 0, ease: "power3.out" },
     );
   }, []);
 
@@ -106,7 +108,17 @@ const Home = () => {
           </p>
         </div>
         <div className="sections">
-          <section className="learn"></section>
+          <section className="learn">
+            {cardsData.map((card, index) => (
+              <Card
+                key={index}
+                imageURL={card.imageURL}
+                title={card.title}
+                description={card.description}
+                button={card.button}
+              />
+            ))}{" "}
+          </section>
         </div>
       </div>
     </>
