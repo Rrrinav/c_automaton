@@ -15,8 +15,12 @@
   /* border-bottom: 1px solid #ccc; */
 }
 
+.bold-text {
+  font-weight: bold;
+}
+
 .list {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   list-style: none;
   display: flex;
   gap: 3rem;
