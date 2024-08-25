@@ -2,9 +2,9 @@
   border-top: 0.5px solid #979dac;
   height: 400px;
   background: linear-gradient(
-    180deg,
+    0deg,
     rgba(0, 40, 85, 1) 20%,
-    rgba(51, 65, 92, 1) 100%
+    rgb(0, 0, 28) 100%
   );
   color: #979dac;
   padding: 1em 5em;

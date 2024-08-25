@@ -7,4 +7,33 @@ html {
   color: #fafafa;
 }
 
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
 
+::-webkit-scrollbar-track {
+  background: #002855; /* Light blue for the track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #979dac; /* Dark blue for the thumb */
+  border-radius: 10px;
+  border: 2px solid #0353a4; /* Light blue border to match the track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2563eb; /* Bright blue on hover */
+}
+
+:-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: 20px;
+  scrollbar-color: #979dac #002855; /* Dark blue thumb, light blue track */
+}
