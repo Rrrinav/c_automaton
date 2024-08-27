@@ -28,3 +28,12 @@
   opacity: 0;
   pointer-events: none; /* Optional: Disable interactions with the loader */
 }
+
+.style-link { 
+  color: #a1a1ff;
+  text-decoration: none;
+}
+
+.style-link:hover {
+  color: #11ffff;
+}

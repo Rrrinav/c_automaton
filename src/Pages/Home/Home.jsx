@@ -88,12 +88,12 @@ const Home = () => {
       gsap.from(".learn > *", {
         opacity: 0,
         y: 30,
-        duration: 0.8,
-        stagger: 0.5,
+        duration: 1.5,
+        stagger: 0.6,
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".learn",
-          start: "top 50%",
+          start: "top 60%",
           end: "center center",
           scrub: 1,
         },
@@ -148,6 +148,7 @@ const Home = () => {
                   title={card.title}
                   description={card.description}
                   button={card.button}
+                  className="cards"
                 />
               ))}{" "}
             </div>

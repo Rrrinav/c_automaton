@@ -7,6 +7,8 @@ import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Learn from "./Pages/Learn/Learn";
 import Error from "./Pages/Error/Error"; // Import the Error component
+import ConwaysGameOfLife from "./Pages/Learn/Content/ConwaysGameOfLife.jsx";
+import BasicIntro from "./Pages/Learn/BasicIntro.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,13 @@ const router = createBrowserRouter([
       {
         path: "learn",
         element: <Learn />,
+        children: [
+          { path: "", element: <BasicIntro />, },
+          {
+            path: "conways-game-of-life",
+            element: <ConwaysGameOfLife />,
+          },
+        ],
       },
     ],
   },

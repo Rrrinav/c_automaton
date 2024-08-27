@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 
-const Glider = ({ width, height }) => {
+const Glider = ({ width, height, bgColor = [0.0, 0.062, 0.149] }) => {
   const canvasRef = useRef(null);
   const glRef = useRef(null);
   const programRef = useRef(null);
@@ -164,7 +164,7 @@ const Glider = ({ width, height }) => {
     const canvas = canvasRef.current;
     if (!gl) return;
 
-    gl.clearColor(0.0, 0.062, (38/255), 1.0);
+    gl.clearColor(bgColor[0], bgColor[1], bgColor[2], 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     const grid = gridRef.current;
