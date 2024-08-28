@@ -4,7 +4,7 @@
   background-color: #001845;
   color: #fafafa;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
 }
 
 .learn-header {
@@ -24,8 +24,19 @@
 
 .learn-container {
   padding: 2rem;
-  background: linear-gradient(rgba(0, 14, 38, 1) 30%, #001845 100%);
+  background: linear-gradient(
+    rgba(0, 14, 38, 1) 20%,
+    #002855 60%,
+    rgba(0, 0, 28, 1) 100%
+  );
   min-height: 100vh;
+  min-width: 80%;
+}
+
+.learn-divide {
+  height: 1px;
+  border: 1px solid #33415c;
+  margin-bottom: 3rem;
 }
 
 .learn-sidebar {
@@ -37,8 +48,8 @@
   min-width: 20%;
 }
 
-.learn-divide {
-  height: 1px;
-  border: 1px solid #33415c;
-  margin-bottom: 3rem;
+.learn-sidebar > h2 {
+  font-size: 2em;
+  margin-bottom: 1rem;
+  letter-spacing: 5px;
 }

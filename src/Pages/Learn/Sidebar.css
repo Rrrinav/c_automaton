@@ -1,0 +1,31 @@
+.sidebar-item {
+  padding: 8px;
+}
+
+.sidebar-item a {
+  text-decoration: none;
+}
+
+.sidebar-item a:hover {
+  color: #3090ff;
+}
+
+.subtopics {
+  padding-left: 20px;
+}
+
+.subtopics.open {
+  display: block;
+}
+
+.subtopics.closed {
+  display: none;
+}
+
+.cont-active {
+  color: #fafafa;
+}
+
+.cont-not-active {
+  color: #979dac;
+}

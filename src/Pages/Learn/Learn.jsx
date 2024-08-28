@@ -1,5 +1,7 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import { topicsData } from "../../Data/topicsData";
 import "./Learn.css";
 
 const Learn = () => {
@@ -16,7 +18,10 @@ const Learn = () => {
         <div className="learn-divide"></div>
         <Outlet />
       </div>
-      <div className="learn-sidebar"></div>
+      <div className="learn-sidebar">
+        <h2>Contents</h2>
+        <Sidebar data={topicsData} />
+      </div>
     </div>
   );
 };
