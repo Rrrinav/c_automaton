@@ -18,7 +18,7 @@ export const cardsData = [
     button: {
       text: "Explore",
       localRoute: true,
-      route: "/learn/elementary-cellular-automaton",
+      route: "/learn/class-1",
     },
   },
   {

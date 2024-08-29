@@ -5,6 +5,7 @@ import Glider from "../../webGl/Glider";
 const BasicIntro = () => {
   return (
     <div className="basicIntro-body">
+      <h1>Cellular Autmata</h1>
       <p>
         <span className="bold-text">Cellular automatons</span> can be described
         as discrete and abstract computational units that work on simple rules.

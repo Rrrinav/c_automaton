@@ -1,11 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import PicoGL from "picogl";
 
-const Rule110 = () => {
+const Rule = ({ rule = [0, 0, 1, 0, 0, 0, 0, 0] }) => {
   const canvasRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 400 });
   const cellSize = 2;
-  const rule110 = [0, 1, 1, 1, 0, 1, 1, 0];
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -32,7 +31,7 @@ const Rule110 = () => {
     const columns = Math.floor(width / cellSize);
     const rows = Math.floor(height / cellSize);
 
-    const app = PicoGL.createApp(canvas).clearColor(0.0, 0.062, 0.149);
+    const app = PicoGL.createApp(canvas).clearColor(0.0, 0.0, 0.0, 1.0);
 
     const vertSource = `#version 300 es
       in vec2 position;
@@ -48,7 +47,7 @@ const Rule110 = () => {
       in float v_state;
       out vec4 outColor;
       void main() {
-        outColor = v_state >= 0.5 ? vec4(0.49, 0.522, 0.592, 0.9) : vec4(0.0, 0.062, 0.149, 1.0);
+        outColor = v_state > 0.5 ? vec4(1.0) : vec4(0.0, 0.0, 0.0, 1.0);
       }`;
 
     const program = app.createProgram(vertSource, fragSource);
@@ -78,13 +77,15 @@ const Rule110 = () => {
     const drawCall = app.createDrawCall(program, vertexArray);
 
     const cells = new Uint8Array(columns);
-    cells[Math.floor(columns / 2)] = 1;
+    cells[Math.floor(columns / 2)] = 1; // Start with a single cell in the middle
 
     let animationFrameId;
+    let currentRow = 0;
 
     const updateAndDraw = () => {
+      // Update states buffer for the current row
       for (let col = 0; col < columns; col++) {
-        const stateIndex = col * 6;
+        const stateIndex = (currentRow * columns + col) * 6;
         states.fill(cells[col], stateIndex, stateIndex + 6);
       }
       stateBuffer.data(states);
@@ -92,17 +93,19 @@ const Rule110 = () => {
       app.clear();
       drawCall.draw();
 
+      // Compute the next generation using the provided rule
       const newCells = new Uint8Array(columns);
       for (let col = 0; col < columns; col++) {
         const left = cells[(col - 1 + columns) % columns];
         const center = cells[col];
         const right = cells[(col + 1) % columns];
         const ruleIndex = (left << 2) | (center << 1) | right;
-        newCells[col] = rule110[ruleIndex];
+        newCells[col] = rule[ruleIndex];
       }
 
       states.copyWithin(0, columns * 6);
 
+      // Update bottom row
       for (let col = 0; col < columns; col++) {
         const stateIndex = (rows - 1) * columns * 6 + col * 6;
         states.fill(newCells[col], stateIndex, stateIndex + 6);
@@ -118,13 +121,13 @@ const Rule110 = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [dimensions]);
+  }, [dimensions, rule]);
 
   return (
-    <div style={{ width: "100%", height: "30vh" }}>
+    <div style={{ width: "100%", height: "40vh" }}>
       <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
     </div>
   );
 };
 
-export default Rule110;
+export default Rule; 

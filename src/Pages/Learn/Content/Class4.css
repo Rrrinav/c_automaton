@@ -1,0 +1,17 @@
+.class4Intro-body {
+  padding-left: 4rem;
+  text-align: initial;
+  font-size: 1.2em;
+  line-height: 1.7em;
+  font-weight: 300;
+  color: #e1e3e1;
+}
+
+.class4Intro-body > * {
+  margin-bottom: 1.5rem;
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 4rem;
+}

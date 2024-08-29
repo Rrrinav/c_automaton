@@ -9,6 +9,8 @@ import Learn from "./Pages/Learn/Learn";
 import Error from "./Pages/Error/Error"; // Import the Error component
 import Class1 from "./Pages/Learn/Content/Class1";
 import Class2 from "./Pages/Learn/Content/Class2";
+import Class3 from "./Pages/Learn/Content/Class3";
+import Class4 from "./Pages/Learn/Content/Class4";
 import BasicIntro from "./Pages/Learn/BasicIntro.jsx";
 
 const router = createBrowserRouter([
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
           {
             path: "class-2",
             element: <Class2 />,
+          },
+          {
+            path: "class-3",
+            element: <Class3 />,
+          },
+          {
+            path: "class-4",
+            element: <Class4 />,
           },
         ],
       },
