@@ -1,6 +1,6 @@
 import React from "react";
 import "./Class1.css";
-import Rule from "../../../webGl/Rule"; // Assuming you have or will create a Rule160 component
+import Rule from "../../../../webGl/Rule"; // Assuming you have or will create a Rule160 component
 
 const Class1 = () => {
   return (

@@ -28,4 +28,19 @@ export const topicsData = [
     path: "class-4",
     subtopics: [],
   },
+  {
+    id: 5,
+    title: "2D Automata",
+    inPage: false,
+    path: "2d-automata",
+    subtopics: [
+      {
+        id: 6,
+        title: "Game of Life",
+        inPage: false,
+        path: "game-of-life",
+        subtopics: [],
+      },
+    ],
+  },
 ];

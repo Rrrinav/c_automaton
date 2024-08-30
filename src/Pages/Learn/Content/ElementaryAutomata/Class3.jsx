@@ -1,6 +1,6 @@
 import React from "react";
 import "./Class3.css";
-import Rule from "../../../webGl/Rule";
+import Rule from "../../../../webGl/Rule";
 const Class3 = () => {
   return (
     <div className="class3Intro-body">

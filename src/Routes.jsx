@@ -7,10 +7,12 @@ import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Learn from "./Pages/Learn/Learn";
 import Error from "./Pages/Error/Error"; // Import the Error component
-import Class1 from "./Pages/Learn/Content/Class1";
-import Class2 from "./Pages/Learn/Content/Class2";
-import Class3 from "./Pages/Learn/Content/Class3";
-import Class4 from "./Pages/Learn/Content/Class4";
+import Class1 from "./Pages/Learn/Content/ElementaryAutomata/Class1";
+import Class2 from "./Pages/Learn/Content/ElementaryAutomata/Class2";
+import Class3 from "./Pages/Learn/Content/ElementaryAutomata/Class3";
+import Class4 from "./Pages/Learn/Content/ElementaryAutomata/Class4";
+import GameOfLife from "./Pages/Learn/Content/2DAutomata/GameOfLife.jsx";
+import Automata2DIntro from "./Pages/Learn/Content/2DAutomata/Automata2DIntro.jsx";
 import BasicIntro from "./Pages/Learn/BasicIntro.jsx";
 
 const router = createBrowserRouter([
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
           {
             path: "class-4",
             element: <Class4 />,
+          },
+          {
+            path: "2d-automata",
+            element: <Automata2DIntro />,
+          },
+          {
+            path: "game-of-life",
+            element: <GameOfLife />,
           },
         ],
       },

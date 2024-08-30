@@ -7,7 +7,7 @@ export const cardsData = [
     button: {
       text: "Explore",
       localRoute: true,
-      route: "/learn/conways-game-of-life",
+      route: "/learn/game-of-life",
     },
   },
   {

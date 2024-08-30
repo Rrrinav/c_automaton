@@ -99,6 +99,17 @@ const BasicIntro = () => {
         below.
       </p>
       <Rule rule={[1, 0, 0, 1, 1, 1, 0, 0]} />
+      <p>
+        Automatas made like this are 1-D cellular-automata and called{" "}
+        <span className="bold-text">Elementary Cellular-automatons</span>
+      </p>
+      <p>
+        Then, there are some 2-D automata like{" "}
+        <span className="bold-text"> Game of Life, Langton's ant, </span> some
+        continuous automata like
+        <span className="bold-text"> Smooth Life </span>
+        too.
+      </p>
     </div>
   );
 };
