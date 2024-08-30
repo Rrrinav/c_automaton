@@ -122,7 +122,7 @@ const Rule110 = () => {
 
   return (
     <div style={{ width: "100%", height: "30vh" }}>
-      <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
+      <canvas ref={canvasRef} style={{ width: "100%", height: "100%", color: "#181818" }} />
     </div>
   );
 };

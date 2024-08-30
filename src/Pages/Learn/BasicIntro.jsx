@@ -1,5 +1,6 @@
 import React from "react";
 import "./BasicIntro.css";
+import Rule from "../../webGl/Rule";
 import Glider from "../../webGl/Glider";
 
 const BasicIntro = () => {
@@ -66,6 +67,38 @@ const BasicIntro = () => {
           structures that are able to survive for long periods of time.
         </li>
       </ul>
+      <h2>Rules</h2>
+      <p>
+        Some general cellular automatas just depend upon 3 neighbours and have
+        two states either on or off (0 or 1), so by this info we can have{" "}
+        <span className="bold-text">256 states </span>
+        for them, of which any of those can be classified into one of these 4
+        classes{" "}
+        <a
+          href="https://plato.stanford.edu/entries/cellular-automata/supplement.html"
+          className="style-link"
+          target="_blank"
+        >
+          (stanford notes)
+        </a>
+      </p>
+      <p>
+        Rules are made by converting a number between 1-255 to binary and making
+        an array out of it E.g:
+      </p>
+      <p>
+        To construct <span className="bold-text">rule 56</span>
+        cellular automata, we convert it to bit representation i.e.{" "}
+        <span className="bold-text">10011100 </span>and construct an array out
+        of it which will look like rule_array = [1,0,0,1,1,1,0,0] now every
+        element represents a rule, as rule_array[0] = 1, rule_array[1] = 0 and
+        so on... and these indices can be written as three 0 or 1 (binary
+        representation) which can be used as a state. Therefore for state 101
+        i.e 5, rule_array[5] = 1. I have created a react component that takes an
+        array as a prop and visualizes it, you can see me using it for 156
+        below.
+      </p>
+      <Rule rule={[1, 0, 0, 1, 1, 1, 0, 0]} />
     </div>
   );
 };

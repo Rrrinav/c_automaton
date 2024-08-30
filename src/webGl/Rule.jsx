@@ -47,13 +47,17 @@ const Rule = ({ rule = [0, 0, 1, 0, 0, 0, 0, 0] }) => {
       in float v_state;
       out vec4 outColor;
       void main() {
-        outColor = v_state > 0.5 ? vec4(1.0) : vec4(0.0, 0.0, 0.0, 1.0);
+        outColor = v_state >= 0.5 ? vec4(1.0) : vec4(0.0, 0.0, 0.0, 1.0);
       }`;
 
     const program = app.createProgram(vertSource, fragSource);
 
     const positions = new Float32Array(columns * rows * 12);
     const states = new Float32Array(columns * rows * 6);
+    //randomly fill the first row
+    for (let col = 0; col < columns; col++) {
+      states[col * 6] = Math.random() > 0.5 ? 1 : 0;
+    }
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < columns; col++) {
@@ -130,4 +134,4 @@ const Rule = ({ rule = [0, 0, 1, 0, 0, 0, 0, 0] }) => {
   );
 };
 
-export default Rule; 
+export default Rule;
