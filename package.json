@@ -17,7 +17,8 @@
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "RLE-parser": "gist:90396dbb8bd8670b4f39ca94ace48a20"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
