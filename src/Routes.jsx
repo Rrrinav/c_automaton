@@ -13,6 +13,7 @@ import Class3 from "./Pages/Learn/Content/ElementaryAutomata/Class3";
 import Class4 from "./Pages/Learn/Content/ElementaryAutomata/Class4";
 import GameOfLife from "./Pages/Learn/Content/2DAutomata/GameOfLife.jsx";
 import Automata2DIntro from "./Pages/Learn/Content/2DAutomata/Automata2DIntro.jsx";
+import GOLTypes from "./Pages/Learn/Content/2DAutomata/GOLTypes.jsx";
 import BasicIntro from "./Pages/Learn/BasicIntro.jsx";
 
 const router = createBrowserRouter([
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
             path: "game-of-life",
             element: <GameOfLife />,
           },
+          {
+            path: "game-of-life-patterns",
+            element: <GOLTypes />,
+          }
         ],
       },
     ],

@@ -1,6 +1,7 @@
 import React from "react";
 import "./GameOfLife.css";
 import Automata2D from "../../../../webGl/Automata2D"; // Ensure this path is correct
+import { Link } from "react-router-dom";
 
 const GameOfLife = () => {
   // The update rule for Conway's Game of Life
@@ -68,11 +69,7 @@ const GameOfLife = () => {
         patterns evolve over time according to the rules described above.
       </p>
 
-      <Automata2D
-        updateRule={updateRule}
-        cellSize={8}
-        updateInterval={200} 
-      />
+      <Automata2D updateRule={updateRule} cellSize={8} updateInterval={200} />
 
       <h2>Further Exploration</h2>
       <p>
@@ -111,6 +108,16 @@ const GameOfLife = () => {
           >
             Video: The Game of Life and Cellular Automata
           </a>
+        </li>
+
+        <li>
+          <Link
+            to="../game-of-life-patterns"
+            className="style-link"
+            rel="noopener noreferrer"
+          >
+            Some notable patterns in Game of Life
+          </Link>
         </li>
       </ul>
       <p>

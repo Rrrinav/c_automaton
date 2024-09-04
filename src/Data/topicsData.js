@@ -41,6 +41,13 @@ export const topicsData = [
         path: "game-of-life",
         subtopics: [],
       },
+      {
+        id: 7,
+        title: "Game of Life Patterns",
+        inPage: false,
+        path: "game-of-life-patterns",
+        subtopics: [],
+      }
     ],
   },
 ];

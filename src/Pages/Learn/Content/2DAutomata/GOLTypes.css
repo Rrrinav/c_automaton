@@ -1,0 +1,34 @@
+#pattern-select {
+  padding: 5px;
+  margin-left: 20px;
+  border: 1px solid #fafafa;
+  border-radius: 4px;
+  background-color: #010155;
+  font-size: 16px;
+  color: #fafafa;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#pattern-select:focus {
+  border-color: #007bff;
+}
+
+#pattern-select option {
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+}
+
+#pattern-select:hover {
+  border-color: #007bff;
+}
+
+#labelll {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+#selector {
+  margin-bottom: 20px;
+}
