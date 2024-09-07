@@ -9,3 +9,5 @@ Automaton wiki written in webGL and React
 <a href="https://www.freepik.com/free-vector/blue-screen-with-white-swirls-words-blue-it_40515525.htm#fromView=search&page=2&position=52&uuid=a21b320d-7bf5-44ce-8254-f969843db9a3">Image by AndreaCharlesta on Freepik</a>
 
 <a href="https://www.freepik.com/free-vector/hand-drawn-gathering-data-business-concept_20289426.htm#fromView=keyword&page=1&position=1&uuid=a80ff277-8ca0-41fa-a61e-04cd344f3044">Image by freepik</a>
+
+![](./src/assets/cells2.jpg)

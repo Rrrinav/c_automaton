@@ -47,7 +47,14 @@ export const topicsData = [
         inPage: false,
         path: "game-of-life-patterns",
         subtopics: [],
-      }
+      },
+      {
+        id: 8,
+        title: "Langton's Ant",
+        inPage: false,
+        path: "langtons-ant",
+        subtopics: [],
+      },
     ],
   },
 ];

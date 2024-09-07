@@ -76,7 +76,8 @@ const GameOfLife = () => {
         The Game of Life has been widely studied for its applications in various
         fields, including computer science, mathematics, and philosophy. It
         serves as a simple yet profound model of computation and has inspired
-        numerous variations and related automata.
+        numerous variations and related automata. There are even videos of
+        Computers made in Game of Life since it is Turing complete.
       </p>
       <ul>
         <li>
