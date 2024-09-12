@@ -55,6 +55,13 @@ export const topicsData = [
         path: "langtons-ant",
         subtopics: [],
       },
+      {
+        id: 9,
+        title: "Day and night",
+        inPage: false,
+        path: "day-and-night",
+        subtopics: [],
+      },
     ],
   },
 ];

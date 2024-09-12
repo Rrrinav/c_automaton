@@ -14,6 +14,7 @@ import Class4 from "./Pages/Learn/Content/ElementaryAutomata/Class4";
 import GameOfLife from "./Pages/Learn/Content/2DAutomata/GameOfLife.jsx";
 import LangtonsAnt from "./Pages/Learn/Content/2DAutomata/LangtonsAnt.jsx";
 import Automata2DIntro from "./Pages/Learn/Content/2DAutomata/Automata2DIntro.jsx";
+import DayAndNight from "./Pages/Learn/Content/2DAutomata/DayAndNight.jsx"
 import GOLTypes from "./Pages/Learn/Content/2DAutomata/GOLTypes.jsx";
 import BasicIntro from "./Pages/Learn/BasicIntro.jsx";
 
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
             path: "langtons-ant",
             element: <LangtonsAnt />,
           },
+          {
+            path: "day-and-night",
+            element: <DayAndNight /> 
+          }
         ],
       },
     ],
