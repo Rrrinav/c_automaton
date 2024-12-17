@@ -62,6 +62,13 @@ export const topicsData = [
         path: "day-and-night",
         subtopics: [],
       },
+      {
+        id: 10,
+        title: "Linea",
+        inPage: false,
+        path: "linea-smoothlife",
+        subtopics: [],
+      },
     ],
   },
 ];
